@@ -9,12 +9,22 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+import unusedImports from "eslint-plugin-unused-imports";
+
 const eslintConfig = [
   ...compat.extends(
     "next/core-web-vitals",
     "next/typescript",
     "prettier"
   ),
+  {
+    plugins: {
+      "unused-imports": unusedImports,
+    },
+    rules: {
+      "unused-imports/no-unused-imports": "error",
+    },
+  },
 ];
 
 export default eslintConfig;
